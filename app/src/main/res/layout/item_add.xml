@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:layout_marginTop="1dp"
+    android:background="@color/white"
+    android:gravity="center_vertical"
+    android:focusableInTouchMode="true"
+    android:focusable="true"
+    android:paddingLeft="16dp"
+    android:paddingRight="0dp">
+    <!--加上以上两个属性防止刚进入Activity时EditText抢占焦点-->
+
+    <TextView
+        android:id="@+id/prod_index"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="12dp"
+        android:background="@color/white"
+        android:text="1" />
+
+
+
+       <Button
+            android:id="@+id/product"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="智能风扇"
+            android:padding="4dp"
+            android:textSize="14sp" />
+
+    <!--给ImageView设置padding效果不明显，所有加上一个布局以扩大点击范围-->
+    <LinearLayout
+        android:id="@+id/prod_delete"
+        android:layout_width="60dp"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:clickable="true"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/ib_delete"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:padding="14dp"
+            android:src="@drawable/item_delete"
+            android:visibility="visible" />
+    </LinearLayout>
+
+</LinearLayout>
+
+    <!--    <EditText
+            android:id="@+id/et_vip_number"
+            android:layout_width="308dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:hint="输入设备名称"
+            android:inputType="number"
+            android:padding="4dp"
+            android:textSize="14sp" />-->

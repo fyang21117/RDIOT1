@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark">
+
+    <EditText
+        android:id="@+id/yy_text"
+        android:layout_width="match_parent"
+        android:layout_height="380dp"
+        android:hint="@string/yy_text_hint"
+        android:textColor="@color/colorWhite"
+        android:textColorHint="@color/colorGray"
+        android:textSize="22sp"
+        android:text="@string/text_RDIOT_hint"/>
+
+    <Button
+        android:id="@+id/yy_start"
+        android:layout_width="162dp"
+        android:layout_height="134dp"
+        android:layout_gravity="center|bottom"
+        android:background="@drawable/yy_voice"
+        android:gravity="end" />
+
+    <Button
+        android:id="@+id/yy_answer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="回答"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_gravity="center"/>
+</LinearLayout>

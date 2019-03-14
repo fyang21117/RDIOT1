@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.percent.PercentFrameLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.fyang21117.rdiot1.MainActivity"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/cp1"
+        android:text="数据绘图"
+        android:background="@color/colorWhite"
+        android:textSize="25sp"
+        android:layout_gravity="start|top"
+        app:layout_widthPercent="50%"
+        app:layout_heightPercent="50%" />
+
+    <Button
+        android:id="@+id/cp2"
+        android:text="设备管理"
+        android:textSize="25sp"
+        android:background="@color/colorGray"
+        android:layout_gravity="end|top"
+        app:layout_widthPercent="50%"
+        app:layout_heightPercent="50%" />
+
+    <Button
+        android:id="@+id/cp3"
+        android:text="语音控制功能"
+        android:textSize="25sp"
+        android:background="@color/colorGray"
+        android:layout_gravity="start|bottom"
+        app:layout_widthPercent="50%"
+        app:layout_heightPercent="50%" />
+
+    <Button
+        android:id="@+id/cp4"
+        android:text="handler机制"
+        android:textSize="25sp"
+        android:background="@color/colorWhite"
+        android:layout_gravity="end|bottom"
+        app:layout_widthPercent="50%"
+        app:layout_heightPercent="50%" />
+
+</android.support.percent.PercentFrameLayout>
