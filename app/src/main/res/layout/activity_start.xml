@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    tools:context="com.fyang21117.rdiot1.second.StartActivity">
+    tools:context="com.fyang21117.rdiot1.login.StartActivity">
 
     <ProgressBar
         android:id="@+id/progress_bar"

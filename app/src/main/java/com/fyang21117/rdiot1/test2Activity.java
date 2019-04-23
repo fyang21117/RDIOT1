@@ -5,145 +5,122 @@ import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.ScrollView;
-import android.widget.TextView;
+import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import com.fyang21117.rdiot1.test2.DataArrayAdapter;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class test2Activity extends AppCompatActivity implements View.OnClickListener
-{
+public class test2Activity extends AppCompatActivity implements View.OnClickListener {
     public static void actionStart(Context context) {
-        Intent intent = new Intent(context,test2Activity.class);
+        Intent intent = new Intent(context, test2Activity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         context.startActivity(intent);
     }
 
-    private ScrollView scrollView;
-    private LinearLayout ProductsContainer;
-    private LinearLayout ProductNum;
-    private Button btnAll;
+    private EditText           mDeviceNameEdit;
+    private EditText           mDeviceNumEdit;
+    private EditText           mDeviceStatusEdit;
+    private ProgressBar        mProgressBar;
+    private ListView           mDataListView;
+    private DataArrayAdapter   mAdapter;
+    private List<List<String>> mList = new ArrayList<>();
 
-    String cpname[]=new String[]{"空气净化器","智能风扇","智能马桶","智能电饭煲"};
+    String Name[]   = new String[]{"空气净化器", "智能风扇", "智能马桶", "智能电饭煲"};
+    String Status[] = new String[]{"关", "开", "开", "关"};
+    int    Num[]    = new int[]{1, 3, 5, 7};
+    int    id       = 0, num = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test2);
         ActionBar actionBar = getSupportActionBar();
-        if(actionBar!=null)
+        if (actionBar != null)
             actionBar.setDisplayHomeAsUpEnabled(true);
-
         setTitle("设备管理");
-        initView();
-        setListeners();
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId())
-        {
-            case android.R.id.home: {
-                finish();
-            }break;
-            default :break;
-        }
-        return super.onOptionsItemSelected(item);
+        mProgressBar = findViewById(R.id.progress_bar);
+        mDeviceNameEdit = findViewById(R.id.device_name_edit);
+        mDeviceNumEdit = findViewById(R.id.device_num_edit);
+        mDeviceStatusEdit = findViewById(R.id.device_status_edit);
+        Button mSaveBtn = findViewById(R.id.add_btn);
+        mDataListView = findViewById(R.id.data_list_view);
+
+        mSaveBtn.setOnClickListener(this);
+        mAdapter = new DataArrayAdapter(this, 0, mList);
+        mDataListView.setAdapter(mAdapter);
+        populateDataFromDB();
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.btn_all://点击添加按钮就动态添加Item
-                Toast.makeText(this,"设备数据上传中，请稍后！",Toast.LENGTH_SHORT).show();
-                 /* List<String> list = getDataList();
-                if(list.size() <= 0)
-                    Toast.makeText(this, "请选择设备 ", Toast.LENGTH_SHORT).show();
-                else{
-                    StringBuilder sb = new StringBuilder("");
-                    for(String str : list){
-                        sb.append(str).append(",");
-                    }
-                    Toast.makeText(this, sb.toString(), Toast.LENGTH_SHORT).show();
-                    Toast.makeText(this,"设备数据上传中，请稍后！",Toast.LENGTH_SHORT).show();
+            case R.id.add_btn: {
+                id++;
+                refreshListView(id, Name[num++], Num[id % 4], Status[id % 4]);
+                if (num > 3) {
+                    num = 0;
                 }
-                break;*/
-        }
-    }
-    private void initView(){
-        scrollView = findViewById(R.id.scroll_view);
-        ProductsContainer = findViewById(R.id.prod_container);
-        ProductNum = findViewById(R.id.Add_prod_num);
-        btnAll = findViewById(R.id.btn_all);
-
-        //TextView et_vip_number =  findViewById(R.id.et_vip_number);
-        //et_vip_number.setText(cpname[2]);
-
-        for(int i = 0; i < 4; i++){
-            addViewItem();
-        }
-    }
-
-    private void setListeners(){
-        ProductNum.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                addViewItem();
             }
-        });
-        btnAll.setOnClickListener(this);
+            break;
+            default:
+                break;
+        }
     }
 
-    /*** 添加item*/
-    private void addViewItem(){
-        View viewItem = LayoutInflater.from(this).inflate(R.layout.item_add, ProductsContainer,false);
-        ProductsContainer.addView(viewItem);
-        sortViewItem();
-        //添加并且排序之后将布局滚动到底部，方便用户继续添加
-        scrollView.post(new Runnable() {
+    private void populateDataFromDB() {
+        mProgressBar.setVisibility(View.VISIBLE);
+        new Thread(new Runnable() {
             @Override
             public void run() {
-                scrollView.fullScroll(ScrollView.FOCUS_DOWN);
-            }
-        });
-    }
-
-    /*** 该方法主要用于排序（每个item中的序号），主要针对从中间删除item的情况*/
-    private void sortViewItem(){
-        for(int i = 0; i < ProductsContainer.getChildCount(); i++){
-            final View viewItem = ProductsContainer.getChildAt(i);
-            TextView prodIndex = viewItem.findViewById(R.id.prod_index);
-            prodIndex.setText((i+1) + "");
-            LinearLayout prodDelete =  viewItem.findViewById(R.id.prod_delete);
-            prodDelete.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    ProductsContainer.removeView(viewItem);
-                    sortViewItem();
-                }
-            });
-        }
-    }
-
-    private List<String> getDataList() {
-        List<String> result = new ArrayList<>();
-        for (int i = 0; i < ProductsContainer.getChildCount(); i++) {
-            View itemView = ProductsContainer.getChildAt(i);
-            EditText product =  itemView.findViewById(R.id.product);
-            if (product != null) {
-                String productNum = product.getText().toString().trim();
-                if (!TextUtils.isEmpty(productNum)) {
-                    result.add(productNum);
+                mList.clear();
+                List<String> columnList = new ArrayList<String>();
+                columnList.add("Id");
+                columnList.add("Name");
+                columnList.add("Num");
+                columnList.add("Status");
+                mList.add(columnList);
+                try {
+                    long Id = 0;
+                    String Name = "zero";
+                    int Num = 0;
+                    String Status = "关";
+                    List<String> stringList = new ArrayList<String>();
+                    stringList.add(String.valueOf(Id));
+                    stringList.add(Name);
+                    stringList.add(String.valueOf(Num));
+                    stringList.add(Status);
+                    mList.add(stringList);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            mProgressBar.setVisibility(View.GONE);
+                            mAdapter.notifyDataSetChanged();//重绘当前可见区域
+                        }
+                    });
                 }
             }
-        }
-        return result;
+        }).start();
+    }
+
+    private void refreshListView(long Id, String Name, int Num, String Status) {
+        List<String> stringList = new ArrayList<String>();
+        stringList.add(String.valueOf(Id));
+        stringList.add(Name);
+        stringList.add(String.valueOf(Num));
+        stringList.add(Status);
+        mList.add(stringList);
+        mAdapter.notifyDataSetChanged();
+        mDataListView.setSelection(mList.size());
     }
 }

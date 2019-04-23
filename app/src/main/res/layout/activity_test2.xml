@@ -2,67 +2,162 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.fyang21117.rdiot1.test4Activity">
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:padding="5dp"
+    tools:context="com.fyang21117.rdiot1.test2Activity">
 
-    <include layout="@layout/title" />
+    <!--<include layout="@layout/title" />-->
 
-    <ScrollView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/scroll_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_alignParentTop="true"
-        android:layout_above="@id/btn_all"
-        android:background="#F5F5F5">
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="#F5F5F5">
+            android:text="MiniJia" />
+
+        <HorizontalScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/textfield_default"
+            android:fadingEdge="none"
+            android:overScrollMode="never"
+            android:scrollbars="none" >
 
             <LinearLayout
-                android:id="@+id/prod_container"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="#F5F5F5">
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/Add_prod_num"
-                android:layout_width="394dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="1dp"
-                android:clickable="true"
-                android:gravity="center_vertical"
-                android:paddingBottom="12dp"
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp"
-                android:paddingTop="12dp">
-                <!--<ImageView-->
-                <!--android:layout_width="39dp"-->
-                <!--android:layout_height="13dp"-->
-                <!--/>-->
-                <!--android:background="@drawable/cp_num"-->
+                android:orientation="vertical" >
 
                 <TextView
-                    android:layout_width="354dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="添加智能设备"
-                    android:textColor="@color/colorPrimary" />
-            </LinearLayout>
-        </LinearLayout>
-    </ScrollView>
+                    android:text="Device device = new Device();"
+                    android:textSize="18sp" />
 
-    <Button
-        android:id="@+id/btn_all"
-        android:layout_width="match_parent"
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="device.setName("
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/device_name_edit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:inputType="none"
+                        android:singleLine="true"
+                        android:text="空气净化器"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=");"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="device.setNum("
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/device_num_edit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:inputType="number"
+                        android:singleLine="true"
+                        android:text="5"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=");"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="device.setStatus("
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/device_status_edit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:inputType="none"
+                        android:singleLine="true"
+                        android:text="关"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=");"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="device.save()"
+                    android:textSize="18sp" />
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <Button
+            android:id="@+id/add_btn"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="添加设备" />
+
+        <!--水平滚动显示-->
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:fadingEdge="none"
+            android:overScrollMode="never"
+            android:scrollbars="none" >
+
+            <ListView
+                android:id="@+id/data_list_view"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:fadingEdge="none"
+                android:overScrollMode="never"
+                android:scrollbars="none" >
+            </ListView>
+        </HorizontalScrollView>
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/colorPrimary"
-        android:layout_alignParentBottom="true"
-        android:text="设备情况汇总" />
+        android:layout_centerInParent="true" />
 </RelativeLayout>

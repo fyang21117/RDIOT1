@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.fyang21117.rdiot1">
-
-    <uses-sdk android:minSdkVersion="8" />
 
     <!-- 连接网络权限，用于执行云端语音能力 -->
     <uses-permission android:name="android.permission.INTERNET" />
@@ -23,10 +22,11 @@
     <!-- 外存储读权限，构建语法需要用到此权限 -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <!-- 配置权限，用来记录应用配置信息 -->
-    <!-- <uses-permission android:name="android.permission.WRITE_SETTINGS"/> -->
+     <permission android:name="android.permission.WRITE_SETTINGS"/>
     <!-- 手机定位信息，用来为语义等功能提供定位，提供更精准的服务 -->
     <!-- 定位信息是敏感信息，可通过Setting.setLocationEnable(false)关闭定位请求 -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <!-- 如需使用人脸识别，还要添加：摄相头权限，拍照需要用到 -->
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -34,27 +34,31 @@
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.USE_FINGERPRINT" />
 
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/my_logo"
         android:label="@string/app_name"
         android:roundIcon="@drawable/my_logo"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".second.LoginActivity" />
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".login.LoginActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".testActivity" />
         <activity android:name=".test2Activity" />
         <activity android:name=".test4Activity" />
-        <activity android:name=".ChartsActivity" />
+        <activity android:name=".test1.ChartsActivity" />
 
         <activity
             android:name=".test3Activity"
             android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|fontScale"
             android:label="讯飞语音示例"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait">
 
-        <activity android:name=".second.StartActivity">
+        </activity>
+
+        <activity android:name=".login.StartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -130,7 +134,6 @@
             android:name="IFLYTEK_CHANNEL"
             android:value="Android_Demo" />
 
-        <activity android:name=".second.unlockActivity"></activity>
     </application>
 
 </manifest>
