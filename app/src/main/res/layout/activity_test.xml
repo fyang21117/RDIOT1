@@ -5,4 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.fyang21117.rdiot1.testActivity">
+
+ <TextView
+     android:id="@+id/textView"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+     android:text="textView"
+     tools:ignore="HardcodedText" />
+
  </LinearLayout>

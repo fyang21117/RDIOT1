@@ -6,19 +6,16 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import android.view.Menu;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-
 import com.fyang21117.rdiot1.test1.ChartsActivity;
 
 public class testActivity extends AppCompatActivity {
@@ -57,8 +54,7 @@ public class testActivity extends AppCompatActivity {
 
         OnItemClickListener listener = new OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent,
-                                    android.view.View view, int position, long id) {
+            public void onItemClick(AdapterView<?> parent, android.view.View view, int position, long id) {
                 String chartsTitleCurr[] = getResources().getStringArray(R.array.chartsTitle);
                 if (position > chartsTitleCurr.length - 1)
                     return;

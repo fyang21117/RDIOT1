@@ -34,6 +34,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         Button psw_login = findViewById(R.id.psw_login);
         Button use_fingerprint = findViewById(R.id.use_fingerprint);
         Button test = findViewById(R.id.test);
+
         editText = findViewById(R.id.unlock_num);
         test.setOnClickListener(this);
         psw_login.setOnClickListener(this);
@@ -48,6 +49,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 MainActivity.actionStart(this);
                 finish();
                 break;
+
            case R.id.use_fingerprint:
                //调用非活动布局的控件
                View view= getLayoutInflater().inflate(R.layout.fingerprint_dialog, null);
@@ -63,14 +65,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                    }
                });
                break;
+
             case R.id.psw_login:
                 string =editText.getText().toString();
-                if(string.equals("1028")) {
+                if(string.equals("123456")) {
                     unlocked = true;
                     MainActivity.actionStart(this);
                     finish();
-                }
-                else {
+                }else {
                     Toast.makeText(this, "Unlocking failed!Please input again!", Toast.LENGTH_SHORT).show();
                 }
                  break;
@@ -93,6 +95,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             return;
         }
         if (!mKeyguardLockScreenManager.isOpenLockScreenPwd()) {
+
             FingerprintUtil.openFingerPrintSettingPage(this);
             return;
         }

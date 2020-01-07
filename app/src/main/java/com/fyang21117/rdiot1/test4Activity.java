@@ -102,8 +102,7 @@ public class test4Activity extends AppCompatActivity implements View.OnClickList
                 finish();
             }
             break;
-            default:
-                break;
+            default: break;
         }
         return super.onOptionsItemSelected(item);
     }
